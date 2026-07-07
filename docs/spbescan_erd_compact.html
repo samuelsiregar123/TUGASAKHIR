@@ -1,0 +1,151 @@
+<style>
+#erd svg.erDiagram .divider path { stroke-opacity: 0.5; }
+#erd svg.erDiagram .row-rect-odd path,
+#erd svg.erDiagram .row-rect-odd rect,
+#erd svg.erDiagram .row-rect-even path,
+#erd svg.erDiagram .row-rect-even rect { stroke: none !important; }
+</style>
+<div id="erd"></div>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"Anthropic Sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '12px',
+    fontFamily: '"Anthropic Sans", sans-serif',
+    lineColor: dark ? '#9c9a92' : '#73726c',
+    textColor: dark ? '#c2c0b6' : '#3d3d3a',
+  },
+});
+const { svg } = await mermaid.render('erd-svg', `erDiagram
+  users {
+    bigint id PK
+    string username
+    string email
+    string password
+    enum role
+    string google2fa_secret
+  }
+
+  audit_requests {
+    bigint id PK
+    bigint auditee_id FK
+    string nama_instansi
+    string url_target
+    string file_nda
+    json daftar_tim_auditee
+    enum status
+  }
+
+  audit_plans {
+    bigint id PK
+    bigint audit_request_id FK
+    bigint auditor_id FK
+    enum peran
+    enum bagian
+    date waktu_mulai
+  }
+
+  penilaian_butir {
+    bigint id PK
+    bigint audit_request_id FK
+    bigint auditor_id FK
+    int nomor_butir
+    enum bagian
+    enum status_edk
+    enum status_eik
+    enum status_efk
+    json info_scan
+  }
+
+  bukti_butir {
+    bigint id PK
+    bigint audit_request_id FK
+    int nomor_butir
+    string file_path
+    string file_name
+  }
+
+  scan_results {
+    bigint id PK
+    bigint audit_request_id FK
+    enum tool_name
+    json hasil
+    enum status
+  }
+
+  temuan_audit {
+    bigint id PK
+    bigint audit_request_id FK
+    bigint auditor_id FK
+    text deskripsi
+    enum tingkat_risiko
+    text rekomendasi
+    enum status_tindak_lanjut
+  }
+
+  pesan_tindak_lanjut {
+    bigint id PK
+    bigint temuan_id FK
+    bigint pengirim_id FK
+    text isi_pesan
+    string lampiran
+  }
+
+  audit_results {
+    bigint id PK
+    bigint audit_request_id FK
+    float nilai_edk_tk
+    float nilai_edk_mk
+    float nilai_edk_fk
+    enum konklusi_tk
+    enum konklusi_mk
+    enum konklusi_fk
+    string file_lhak
+    enum status_tindak_lanjut
+  }
+
+  users ||--o{ audit_requests : "mengajukan"
+  users ||--o{ audit_plans : "ditugaskan"
+  users ||--o{ penilaian_butir : "menilai"
+  users ||--o{ temuan_audit : "mencatat"
+  users ||--o{ pesan_tindak_lanjut : "mengirim"
+  audit_requests ||--o{ audit_plans : "memiliki"
+  audit_requests ||--o{ penilaian_butir : "memiliki"
+  audit_requests ||--o{ bukti_butir : "memiliki"
+  audit_requests ||--o{ scan_results : "memiliki"
+  audit_requests ||--o{ temuan_audit : "memiliki"
+  audit_requests ||--|| audit_results : "menghasilkan"
+  temuan_audit ||--o{ pesan_tindak_lanjut : "memiliki"
+`);
+document.getElementById('erd').innerHTML = svg;
+
+document.querySelectorAll('#erd svg.erDiagram .node').forEach(node => {
+  const firstPath = node.querySelector('path[d]');
+  if (!firstPath) return;
+  const d = firstPath.getAttribute('d');
+  const nums = d.match(/-?[\d.]+/g)?.map(Number);
+  if (!nums || nums.length < 8) return;
+  const xs = [nums[0], nums[2], nums[4], nums[6]];
+  const ys = [nums[1], nums[3], nums[5], nums[7]];
+  const x = Math.min(...xs), y = Math.min(...ys);
+  const w = Math.max(...xs) - x, h = Math.max(...ys) - y;
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', x); rect.setAttribute('y', y);
+  rect.setAttribute('width', w); rect.setAttribute('height', h);
+  rect.setAttribute('rx', '8');
+  for (const a of ['fill', 'stroke', 'stroke-width', 'class', 'style']) {
+    if (firstPath.hasAttribute(a)) rect.setAttribute(a, firstPath.getAttribute(a));
+  }
+  firstPath.replaceWith(rect);
+});
+
+document.querySelectorAll('#erd svg.erDiagram .row-rect-odd path, #erd svg.erDiagram .row-rect-even path').forEach(p => {
+  p.setAttribute('stroke', 'none');
+});
+</script>

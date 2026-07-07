@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPBE-SCAN — Ringkasan Kelengkapan (gaya LMS)</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',Arial,sans-serif; background:#f0f2f5; padding:24px; }
+h1 { text-align:center; color:#1F4E79; font-size:20px; margin-bottom:4px; }
+.subtitle { text-align:center; color:#666; font-size:12px; margin-bottom:24px; }
+.page-label { font-size:11px; background:#E6F1FB; color:#1F4E79; padding:2px 10px; border-radius:20px; display:inline-block; margin-bottom:10px; font-weight:500; }
+.section-title { font-size:14px; font-weight:700; color:#1F4E79; margin:28px 0 12px; padding-left:12px; border-left:4px solid #1F4E79; }
+.wf { background:#f5f5f4; border-radius:12px; padding:16px; margin-bottom:24px; }
+.screen { background:#fff; border-radius:8px; border:1px solid #ddd; overflow:hidden; }
+
+.topbar { background:#1F4E79; color:#fff; padding:10px 16px; font-size:13px; font-weight:600; display:flex; justify-content:space-between; align-items:center; }
+.topbar .u { font-size:11px; font-weight:400; }
+
+.main { padding:16px 20px; }
+.hdr { font-size:15px; font-weight:600; margin-bottom:2px; color:#222; }
+.sub { font-size:11px; color:#888; margin-bottom:14px; }
+
+/* summary banner */
+.banner { border-radius:8px; padding:12px 14px; margin-bottom:16px; font-size:12px; display:flex; align-items:center; gap:10px; }
+.banner-warn { background:#FFF8E1; border:1px solid #F9A825; color:#7B6000; }
+.banner-ok { background:#EAF3DE; border:1px solid #5a9; color:#375623; }
+.banner b { font-size:13px; }
+
+/* tab pills */
+.tabs { display:flex; gap:8px; margin-bottom:14px; }
+.tab { font-size:11px; padding:6px 14px; border-radius:6px; background:#f5f5f4; color:#888; border:1px solid #e5e5e5; }
+.tab.active { background:#1F4E79; color:#fff; font-weight:600; }
+.tab .cnt { font-size:9px; opacity:0.85; }
+
+/* legend */
+.legend { display:flex; gap:16px; margin-bottom:12px; font-size:10px; color:#555; }
+.legend span { display:flex; align-items:center; gap:5px; }
+.dot { width:12px; height:12px; border-radius:3px; display:inline-block; }
+.dot-ok { background:#EAF3DE; border:1px solid #5a9; }
+.dot-no { background:#FCEBEB; border:1px solid #d99; }
+
+/* table */
+table { width:100%; border-collapse:collapse; font-size:11px; }
+th { background:#1F4E79; color:#fff; font-size:10px; font-weight:600; padding:7px 8px; text-align:left; }
+th.c { text-align:center; }
+td { padding:7px 8px; border-bottom:1px solid #eee; vertical-align:middle; }
+td.c { text-align:center; }
+tr.row-incomplete { background:#FFFBF5; }
+.bnum { font-weight:600; color:#1F4E79; }
+.btitle { color:#333; font-size:10px; }
+
+/* status chips */
+.chip { font-size:9px; padding:2px 7px; border-radius:10px; font-weight:600; display:inline-block; min-width:46px; text-align:center; }
+.chip-ok { background:#EAF3DE; color:#375623; }
+.chip-no { background:#FCEBEB; color:#9b1c1c; }
+.chip-skip { background:#eee; color:#777; }
+
+.gotolink { font-size:10px; color:#1F4E79; text-decoration:underline; cursor:pointer; }
+
+/* group divider row */
+tr.group td { background:#eef1f4; font-size:10px; font-weight:700; color:#1F4E79; padding:5px 8px; }
+
+/* action bar */
+.actionbar { display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:14px; border-top:1px solid #eee; }
+.btn { font-size:12px; padding:8px 18px; border-radius:6px; border:none; cursor:pointer; font-weight:600; }
+.btn-primary { background:#1F4E79; color:#fff; }
+.btn-disabled { background:#ccc; color:#fff; cursor:not-allowed; }
+.btn-ghost { background:#fff; border:1px solid #1F4E79; color:#1F4E79; }
+.note-final { font-size:10px; color:#999; }
+
+.annotation { background:#FFF8E1; border:1px dashed #F9A825; padding:12px 14px; margin:16px 0; border-radius:6px; font-size:11px; color:#7B6000; }
+.annotation strong { color:#856404; }
+.annotation ul { margin:6px 0 0 18px; }
+.annotation li { margin-bottom:4px; }
+</style>
+</head>
+<body>
+
+<h1>SPBE-SCAN — Ringkasan Kelengkapan Pengisian (Gaya LMS)</h1>
+<p class="subtitle">Samuel Partogian Dominggos Siregar · NIM 2221101848 · RKS · PSSN · 2026</p>
+
+<!-- ========= VERSI AUDITEE ========= -->
+<div class="section-title">Versi Auditee — Ringkasan Kelengkapan Bukti EDK / EIK / EFK</div>
+<span class="page-label">Muncul di bagian akhir halaman kuesioner, setelah semua butir</span>
+
+<div class="wf">
+<div class="screen">
+  <div class="topbar"><span>SPBE-SCAN | Kuesioner Audit</span><span class="u">Pak Budi — Diskominfo Kota Bogor</span></div>
+  <div class="main">
+    <p class="hdr">Ringkasan Kelengkapan Pengisian</p>
+    <p class="sub">Audit #2026-001 — Aplikasi SIPD Kota Bogor</p>
+
+    <div class="banner banner-warn">
+      <b>Belum lengkap.</b> Masih ada 4 butir yang bukti EDK / EIK / EFK-nya belum diunggah. Anda tetap bisa menyimpan dan melanjutkan nanti.
+    </div>
+
+    <div class="tabs">
+      <div class="tab active">Tata Kelola <span class="cnt">(23/25)</span></div>
+      <div class="tab">Manajemen <span class="cnt">(48/50)</span></div>
+      <div class="tab">Fungsionalitas <span class="cnt">(75/75)</span></div>
+    </div>
+
+    <div class="legend">
+      <span><i class="dot dot-ok"></i> Sudah diunggah</span>
+      <span><i class="dot dot-no"></i> Belum diunggah</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%">Butir</th>
+          <th style="width:34%">Kontrol Pemeriksaan</th>
+          <th class="c" style="width:14%">Tanggapan</th>
+          <th class="c" style="width:11%">Bukti EDK</th>
+          <th class="c" style="width:11%">Bukti EIK</th>
+          <th class="c" style="width:11%">Bukti EFK</th>
+          <th class="c" style="width:11%">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="group"><td colspan="7">Hanya menampilkan butir yang BELUM lengkap</td></tr>
+
+        <tr class="row-incomplete">
+          <td class="bnum">TK-3</td>
+          <td class="btitle">Penetapan Penanggung Jawab Keamanan SPBE</td>
+          <td class="c"><span class="chip chip-ok">Terisi</span></td>
+          <td class="c"><span class="chip chip-ok">Ada</span></td>
+          <td class="c"><span class="chip chip-no">Kosong</span></td>
+          <td class="c"><span class="chip chip-no">Kosong</span></td>
+          <td class="c"><span class="gotolink">Lengkapi</span></td>
+        </tr>
+
+        <tr class="row-incomplete">
+          <td class="bnum">TK-8</td>
+          <td class="btitle">Audit internal tahapan pelaporan</td>
+          <td class="c"><span class="chip chip-no">Kosong</span></td>
+          <td class="c"><span class="chip chip-no">Kosong</span></td>
+          <td class="c"><span class="chip chip-no">Kosong</span></td>
+          <td class="c"><span class="chip chip-no">Kosong</span></td>
+          <td class="c"><span class="gotolink">Lengkapi</span></td>
+        </tr>
+
+        <tr class="row-incomplete">
+          <td class="bnum">MK-12</td>
+          <td class="btitle">Klasifikasi aset informasi</td>
+          <td class="c"><span class="chip chip-ok">Terisi</span></td>
+          <td class="c"><span class="chip chip-ok">Ada</span></td>
+          <td class="c"><span class="chip chip-ok">Ada</span></td>
+          <td class="c"><span class="chip chip-no">Kosong</span></td>
+          <td class="c"><span class="gotolink">Lengkapi</span></td>
+        </tr>
+
+        <tr class="row-incomplete">
+          <td class="bnum">MK-29</td>
+          <td class="btitle">Manajemen log dan pemantauan</td>
+          <td class="c"><span class="chip chip-ok">Terisi</span></td>
+          <td class="c"><span class="chip chip-no">Kosong</span></td>
+          <td class="c"><span class="chip chip-ok">Ada</span></td>
+          <td class="c"><span class="chip chip-ok">Ada</span></td>
+          <td class="c"><span class="gotolink">Lengkapi</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="actionbar">
+      <span class="note-final">146 dari 150 butir sudah lengkap</span>
+      <div style="display:flex; gap:8px;">
+        <button class="btn btn-ghost">Simpan &amp; lanjut nanti</button>
+        <button class="btn btn-primary">Tandai Pengisian Selesai</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ========= VERSI AUDITOR ========= -->
+<div class="section-title">Versi Auditor — Ringkasan Kelengkapan Penilaian EDK / EIK / EFK</div>
+<span class="page-label">Muncul di bagian akhir halaman penilaian, sebelum konklusi dihitung</span>
+
+<div class="wf">
+<div class="screen">
+  <div class="topbar"><span>SPBE-SCAN | Penilaian Audit</span><span class="u">Auditor — Sdr. Andi</span></div>
+  <div class="main">
+    <p class="hdr">Ringkasan Kelengkapan Penilaian</p>
+    <p class="sub">Audit #2026-001 — Bagian yang ditugaskan: Fungsionalitas Web (FK)</p>
+
+    <div class="banner banner-warn">
+      <b>Penilaian belum lengkap.</b> Masih ada 3 butir yang nilai EDK / EIK / EFK-nya belum diisi. Konklusi belum bisa dihitung sampai semua butir dinilai.
+    </div>
+
+    <div class="legend">
+      <span><i class="dot dot-ok"></i> Sudah dinilai</span>
+      <span><i class="dot dot-no"></i> Belum dinilai</span>
+      <span><i class="dot" style="background:#eee;border:1px solid #bbb;"></i> Dilewati (EDK Tidak Memadai)</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%">Butir</th>
+          <th style="width:38%">Kontrol Pemeriksaan</th>
+          <th class="c" style="width:13%">Nilai EDK</th>
+          <th class="c" style="width:13%">Nilai EIK</th>
+          <th class="c" style="width:13%">Nilai EFK</th>
+          <th class="c" style="width:11%">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="group"><td colspan="6">Hanya menampilkan butir yang BELUM selesai dinilai</td></tr>
+
+        <tr class="row-incomplete">
+          <td class="bnum">FK-19</td>
+          <td class="btitle">Validasi input untuk mencegah injection</td>
+          <td class="c"><span class="chip chip-ok">Memadai</span></td>
+          <td class="c"><span class="chip chip-no">Belum</span></td>
+          <td class="c"><span class="chip chip-no">Belum</span></td>
+          <td class="c"><span class="gotolink">Nilai</span></td>
+        </tr>
+
+        <tr class="row-incomplete">
+          <td class="bnum">FK-27</td>
+          <td class="btitle">Penggunaan protokol TLS yang aman</td>
+          <td class="c"><span class="chip chip-no">Belum</span></td>
+          <td class="c"><span class="chip chip-no">Belum</span></td>
+          <td class="c"><span class="chip chip-no">Belum</span></td>
+          <td class="c"><span class="gotolink">Nilai</span></td>
+        </tr>
+
+        <tr class="row-incomplete">
+          <td class="bnum">FK-49</td>
+          <td class="btitle">Konfigurasi keamanan web server</td>
+          <td class="c"><span class="chip chip-ok">Tidak Memadai</span></td>
+          <td class="c"><span class="chip chip-skip">Dilewati</span></td>
+          <td class="c"><span class="chip chip-no">Belum</span></td>
+          <td class="c"><span class="gotolink">Nilai</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="actionbar">
+      <span class="note-final">72 dari 75 butir FK sudah dinilai</span>
+      <div style="display:flex; gap:8px;">
+        <button class="btn btn-ghost">Simpan &amp; lanjut nanti</button>
+        <button class="btn btn-disabled">Hitung Konklusi (terkunci)</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="annotation">
+<strong>Penjelasan untuk Anda (Samuel):</strong>
+<ul>
+  <li><strong>Hanya tampil di akhir.</strong> Ringkasan ini muncul di bagian bawah halaman (setelah semua butir), bukan tabel progress terpisah — persis seperti gaya LMS yang Anda maksud.</li>
+  <li><strong>Per butir, per kategori.</strong> Setiap baris menunjukkan satu butir dengan status EDK, EIK, dan EFK terpisah, sehingga jelas mana yang masih kosong (chip merah "Kosong"/"Belum").</li>
+  <li><strong>Hanya menampilkan yang belum lengkap.</strong> Butir yang sudah lengkap disembunyikan agar daftar pendek dan fokus. (Bisa direvisi jadi "tampilkan semua" kalau Anda mau.)</li>
+  <li><strong>Auditee:</strong> kolom Tanggapan + Bukti EDK/EIK/EFK. <strong>Auditor:</strong> kolom Nilai EDK/EIK/EFK, dengan chip "Dilewati" abu-abu untuk EIK saat EDK Tidak Memadai.</li>
+  <li><strong>Tombol "Lengkapi"/"Nilai"</strong> meloncat langsung ke butir tersebut.</li>
+  <li><strong>Bisa dijeda:</strong> tombol "Simpan &amp; lanjut nanti" selalu aktif. Untuk auditor, "Hitung Konklusi" terkunci sampai semua butir dinilai.</li>
+</ul>
+Beri tahu bagian mana yang ingin direvisi: kriteria "lengkap", tampilkan-semua vs hanya-yang-kosong, atau kolom yang perlu ditambah/dikurangi.
+</div>
+
+</body>
+</html>

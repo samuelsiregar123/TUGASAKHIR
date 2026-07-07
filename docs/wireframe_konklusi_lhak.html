@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPBE-SCAN — Konklusi + Generate LHAK (Ketua Tim)</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',Arial,sans-serif; background:#f0f2f5; padding:24px; }
+h1 { text-align:center; color:#1F4E79; font-size:20px; margin-bottom:4px; }
+.subtitle { text-align:center; color:#666; font-size:12px; margin-bottom:24px; }
+.page-label { font-size:11px; background:#E6F1FB; color:#1F4E79; padding:2px 10px; border-radius:20px; display:inline-block; margin-bottom:10px; font-weight:500; }
+.wf { background:#f5f5f4; border-radius:12px; padding:16px; margin-bottom:24px; max-width:900px; margin-left:auto; margin-right:auto; }
+.screen { background:#fff; border-radius:8px; border:1px solid #ddd; overflow:hidden; display:flex; }
+.sidebar { width:155px; background:#f5f5f4; border-right:1px solid #ddd; padding:12px 0; flex-shrink:0; }
+.sb-logo { font-size:13px; font-weight:600; padding:8px 14px 12px; color:#1F4E79; border-bottom:1px solid #ddd; margin-bottom:6px; }
+.sb-item { font-size:11px; padding:7px 14px; color:#888; cursor:pointer; }
+.sb-active { background:#E6F1FB; color:#1F4E79; font-weight:600; }
+.main { flex:1; padding:16px 20px; }
+.hdr { font-size:15px; font-weight:600; margin-bottom:2px; color:#222; }
+.sub { font-size:11px; color:#888; margin-bottom:14px; }
+
+.sectlabel { font-size:11px; font-weight:700; color:#1F4E79; margin:16px 0 8px; text-transform:uppercase; letter-spacing:0.5px; }
+
+/* konklusi grid */
+.kgrid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:10px; }
+.kcard { border-radius:6px; padding:10px; border:1px solid #e5e5e5; }
+.kcard .kt { font-size:10px; color:#888; margin-bottom:4px; }
+.kcard .kv { font-size:13px; font-weight:700; margin-bottom:6px; }
+.kcard .kd { font-size:9px; color:#666; line-height:1.4; }
+.k-ok { background:#EAF3DE; border-color:#cfe3b8; }
+.k-ok .kv { color:#375623; }
+.k-warn { background:#FFF2CC; border-color:#f0e0a0; }
+.k-warn .kv { color:#7B6000; }
+.k-bad { background:#FCEBEB; border-color:#f0c0c0; }
+.k-bad .kv { color:#9b1c1c; }
+
+.overall { background:#E6F1FB; border:1px solid #c5dcf0; border-radius:6px; padding:10px 12px; margin-bottom:14px; font-size:12px; }
+.overall b { color:#1F4E79; font-size:13px; }
+
+/* buttons */
+.btnrow { display:flex; gap:8px; margin:6px 0 4px; }
+.btn { font-size:11px; padding:8px 16px; border-radius:6px; border:none; cursor:pointer; font-weight:600; }
+.btn-ghost { background:#fff; border:1px solid #1F4E79; color:#1F4E79; }
+.btn-primary { background:#1F4E79; color:#fff; }
+.hint { font-size:9px; color:#999; margin-top:3px; }
+
+/* pdf preview */
+.pdfbox { border:1px dashed #bbb; border-radius:6px; background:#fafafa; height:120px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#999; font-size:11px; margin-top:6px; gap:4px; }
+.pdfbox .ic { font-size:26px; }
+
+.divider { border:0; border-top:1px solid #eee; margin:16px 0; }
+
+.annotation { background:#FFF8E1; border:1px dashed #F9A825; padding:12px 14px; margin:16px auto; border-radius:6px; font-size:11px; color:#7B6000; max-width:900px; }
+.annotation strong { color:#856404; }
+.annotation ul { margin:6px 0 0 18px; }
+.annotation li { margin-bottom:4px; }
+</style>
+</head>
+<body>
+
+<h1>SPBE-SCAN — Halaman Konklusi + Generate LHAK</h1>
+<p class="subtitle">Satu menu (Ketua Tim) · Samuel Partogian Dominggos Siregar · NIM 2221101848</p>
+
+<span class="page-label" style="display:block; text-align:center; max-width:900px; margin:0 auto 10px;">Konklusi dan Generate LHAK berada di SATU halaman / SATU menu</span>
+
+<div class="wf">
+<div class="screen">
+  <div class="sidebar">
+    <div class="sb-logo">SPBE-SCAN</div>
+    <div class="sb-item">Dashboard</div>
+    <div class="sb-item">Review Pengajuan</div>
+    <div class="sb-item">Audit Plan</div>
+    <div class="sb-item">Penilaian</div>
+    <div class="sb-item sb-active">Konklusi &amp; LHAK</div>
+    <div class="sb-item">Tindak Lanjut</div>
+  </div>
+  <div class="main">
+    <p class="hdr">Konklusi &amp; Laporan Hasil Audit</p>
+    <p class="sub">Audit #2026-001 — Aplikasi SIPD Kota Bogor</p>
+
+    <!-- BAGIAN 1: KONKLUSI -->
+    <div class="sectlabel">1. Rekap Konklusi per Bagian</div>
+    <div class="kgrid">
+      <div class="kcard k-ok">
+        <div class="kt">Tata Kelola (TK)</div>
+        <div class="kv">Memadai</div>
+        <div class="kd">EDK 0.86 · EIK 0.78 · EFK 0.82</div>
+      </div>
+      <div class="kcard k-warn">
+        <div class="kt">Manajemen (MK)</div>
+        <div class="kv">Perlu Peningkatan</div>
+        <div class="kd">EDK 0.64 · EIK 0.71 · EFK 0.58</div>
+      </div>
+      <div class="kcard k-bad">
+        <div class="kt">Fungsionalitas (FK)</div>
+        <div class="kv">Tidak Memadai</div>
+        <div class="kd">EDK 0.42 · EIK dilewati · EFK 0.39</div>
+      </div>
+    </div>
+
+    <div class="overall">
+      Konklusi Keseluruhan: <b>Perlu Peningkatan</b> — berdasarkan kombinasi hasil 3 bagian melalui matriks konklusi.
+    </div>
+
+    <div class="btnrow">
+      <button class="btn btn-ghost">Hitung Ulang Konklusi</button>
+    </div>
+    <div class="hint">Konklusi otomatis dihitung dari nilai EDK/EIK/EFK seluruh butir yang sudah dinilai auditor.</div>
+
+    <hr class="divider">
+
+    <!-- BAGIAN 2: GENERATE LHAK -->
+    <div class="sectlabel">2. Laporan Hasil Audit Keamanan (LHAK)</div>
+
+    <div class="btnrow">
+      <button class="btn btn-primary">Generate LHAK (PDF)</button>
+    </div>
+    <div class="hint">Membuat dokumen PDF 7 halaman berisi cover, ringkasan, grafik, detail penilaian, temuan, dan tanda tangan.</div>
+
+    <div class="pdfbox">
+      <div class="ic">&#128196;</div>
+      <div>Preview LHAK akan muncul di sini setelah di-generate</div>
+      <div style="font-size:9px;">LHAK_Audit_2026-001.pdf</div>
+    </div>
+
+    <div class="btnrow" style="margin-top:10px;">
+      <button class="btn btn-ghost">Lihat Preview</button>
+      <button class="btn btn-primary">Unduh PDF</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="annotation">
+<strong>Penjelasan untuk Anda (Samuel):</strong>
+<ul>
+  <li><strong>Satu menu, dua bagian.</strong> Di sidebar hanya ada satu menu "Konklusi &amp; LHAK". Di dalamnya bagian atas untuk konklusi, bagian bawah untuk generate LHAK — tidak ada menu "Konklusi" terpisah.</li>
+  <li><strong>Bagian 1 - Konklusi:</strong> 3 kartu (TK/MK/FK) dengan warna sesuai hasil — hijau Memadai, kuning Perlu Peningkatan, merah Tidak Memadai. Di bawahnya konklusi keseluruhan. Tombol "Hitung Ulang Konklusi" untuk menghitung dari nilai penilaian auditor.</li>
+  <li><strong>Bagian 2 - LHAK:</strong> tombol "Generate LHAK" membuat PDF 7 halaman, lalu muncul preview dan tombol unduh.</li>
+  <li><strong>Catatan FK:</strong> contoh ini menunjukkan FK "Tidak Memadai" dengan "EIK dilewati" — sesuai aturan jika EDK Tidak Memadai maka EIK tidak dinilai.</li>
+  <li>Beri tahu jika ingin tata letak, warna, atau label diubah.</li>
+</ul>
+</div>
+
+</body>
+</html>

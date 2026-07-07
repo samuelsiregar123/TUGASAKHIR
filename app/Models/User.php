@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Models;
+
+use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Sanctum\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'role',
+        'nama_instansi',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
+    ];
+
+    protected $appends = [
+        'profile_photo_url',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password'          => 'hashed',
+        ];
+    }
+
+    public function auditRequests()
+    {
+        return $this->hasMany(AuditRequest::class, 'auditee_id');
+    }
+
+    public function auditPlanAuditors()
+    {
+        return $this->hasMany(AuditPlanAuditor::class);
+    }
+
+    public function penilaianButir()
+    {
+        return $this->hasMany(PenilaianButir::class, 'auditor_id');
+    }
+
+    public function temuanAudit()
+    {
+        return $this->hasMany(TemuanAudit::class, 'auditor_id');
+    }
+
+    public function buktiButir()
+    {
+        return $this->hasMany(BuktiButir::class, 'auditee_id');
+    }
+
+    public function pesanTindakLanjut()
+    {
+        return $this->hasMany(PesanTindakLanjut::class);
+    }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPBE-SCAN — Daftar Instansi Diaudit (Level 1)</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',Arial,sans-serif; background:#f0f2f5; padding:24px; }
+h1 { text-align:center; color:#1F4E79; font-size:20px; margin-bottom:4px; }
+.subtitle { text-align:center; color:#666; font-size:12px; margin-bottom:20px; }
+.page-label { font-size:11px; background:#E6F1FB; color:#1F4E79; padding:2px 10px; border-radius:20px; display:inline-block; margin-bottom:10px; font-weight:500; }
+.flow-note { text-align:center; font-size:11px; color:#888; margin-bottom:18px; }
+.wf { background:#f5f5f4; border-radius:12px; padding:16px; margin:0 auto 24px; max-width:920px; }
+.screen { background:#fff; border-radius:8px; border:1px solid #ddd; overflow:hidden; display:flex; }
+.sidebar { width:155px; background:#f5f5f4; border-right:1px solid #ddd; padding:12px 0; flex-shrink:0; }
+.sb-logo { font-size:13px; font-weight:600; padding:8px 14px 12px; color:#1F4E79; border-bottom:1px solid #ddd; margin-bottom:6px; }
+.sb-item { font-size:11px; padding:7px 14px; color:#888; cursor:pointer; }
+.sb-active { background:#E6F1FB; color:#1F4E79; font-weight:600; }
+.main { flex:1; padding:16px 20px; }
+.hdr { font-size:15px; font-weight:600; margin-bottom:2px; color:#222; }
+.sub { font-size:11px; color:#888; margin-bottom:14px; }
+
+/* search + filter row */
+.toolbar { display:flex; gap:8px; margin-bottom:12px; align-items:center; }
+.search { flex:1; height:30px; border:1px solid #ddd; border-radius:6px; padding:0 10px; font-size:11px; color:#aaa; display:flex; align-items:center; gap:6px; }
+.filter { height:30px; border:1px solid #ddd; border-radius:6px; padding:0 12px; font-size:11px; color:#555; display:flex; align-items:center; gap:5px; background:#fff; }
+
+/* table */
+table { width:100%; border-collapse:collapse; font-size:11px; }
+th { background:#1F4E79; color:#fff; font-size:10px; font-weight:600; padding:8px; text-align:left; }
+th.c { text-align:center; }
+td { padding:9px 8px; border-bottom:1px solid #eee; vertical-align:middle; }
+td.c { text-align:center; }
+tr:hover td { background:#f8fbfe; cursor:pointer; }
+.inst { font-weight:600; color:#1F4E79; font-size:11px; }
+.app { font-size:10px; color:#666; }
+
+.chip { font-size:9px; padding:2px 8px; border-radius:10px; font-weight:600; display:inline-block; }
+.c-proses { background:#E6F1FB; color:#1F4E79; }
+.c-nilai { background:#FFF2CC; color:#7B6000; }
+.c-siap { background:#EAF3DE; color:#375623; }
+.c-selesai { background:#eee; color:#666; }
+
+.kchip { font-size:9px; padding:2px 7px; border-radius:10px; font-weight:600; }
+.k-ok { background:#EAF3DE; color:#375623; }
+.k-warn { background:#FFF2CC; color:#7B6000; }
+.k-bad { background:#FCEBEB; color:#9b1c1c; }
+.k-none { color:#bbb; }
+
+.act { font-size:10px; color:#1F4E79; font-weight:600; text-decoration:underline; }
+.act-off { font-size:10px; color:#bbb; }
+
+.pager { display:flex; justify-content:space-between; align-items:center; margin-top:12px; font-size:10px; color:#888; }
+.pg-btns { display:flex; gap:5px; }
+.pg { padding:3px 8px; border:1px solid #ddd; border-radius:4px; cursor:pointer; }
+.pg.on { background:#1F4E79; color:#fff; border-color:#1F4E79; }
+
+.annotation { background:#FFF8E1; border:1px dashed #F9A825; padding:12px 14px; margin:16px auto; border-radius:6px; font-size:11px; color:#7B6000; max-width:920px; }
+.annotation strong { color:#856404; }
+.annotation ul { margin:6px 0 0 18px; }
+.annotation li { margin-bottom:4px; }
+.arrow-down { text-align:center; font-size:22px; color:#1F4E79; margin:4px 0; }
+</style>
+</head>
+<body>
+
+<h1>SPBE-SCAN — Daftar Instansi Diaudit (Halaman Level 1)</h1>
+<p class="subtitle">Tampilan saat menu Konklusi &amp; LHAK pertama dibuka · Samuel Partogian Dominggos Siregar · NIM 2221101848</p>
+
+<span class="page-label" style="display:block; text-align:center; max-width:920px; margin:0 auto 6px;">LEVEL 1 — Ketua tim buka menu, muncul DAFTAR instansi dulu</span>
+<p class="flow-note">Klik salah satu baris instansi &#8594; masuk ke halaman detail Konklusi &amp; LHAK (yang sudah dibuat sebelumnya)</p>
+
+<div class="wf">
+<div class="screen">
+  <div class="sidebar">
+    <div class="sb-logo">SPBE-SCAN</div>
+    <div class="sb-item">Dashboard</div>
+    <div class="sb-item">Review Pengajuan</div>
+    <div class="sb-item">Audit Plan</div>
+    <div class="sb-item">Penilaian</div>
+    <div class="sb-item sb-active">Konklusi &amp; LHAK</div>
+    <div class="sb-item">Tindak Lanjut</div>
+  </div>
+  <div class="main">
+    <p class="hdr">Konklusi &amp; Laporan Hasil Audit</p>
+    <p class="sub">Daftar instansi yang sedang dan telah diaudit</p>
+
+    <div class="toolbar">
+      <div class="search">&#128269; Cari instansi atau aplikasi...</div>
+      <div class="filter">Status: Semua &#9662;</div>
+      <div class="filter">Tahun: 2026 &#9662;</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:6%">No</th>
+          <th style="width:26%">Instansi</th>
+          <th style="width:22%">Aplikasi</th>
+          <th class="c" style="width:14%">Status</th>
+          <th class="c" style="width:18%">Konklusi</th>
+          <th class="c" style="width:14%">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><div class="inst">Diskominfo Kota Bogor</div></td>
+          <td><div class="app">SIPD Kota Bogor</div></td>
+          <td class="c"><span class="chip c-siap">Siap LHAK</span></td>
+          <td class="c"><span class="kchip k-warn">Perlu Peningkatan</span></td>
+          <td class="c"><span class="act">Buka</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><div class="inst">Dinas Pendidikan Prov. Jabar</div></td>
+          <td><div class="app">E-Raport Jabar</div></td>
+          <td class="c"><span class="chip c-siap">Siap LHAK</span></td>
+          <td class="c"><span class="kchip k-ok">Memadai</span></td>
+          <td class="c"><span class="act">Buka</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><div class="inst">BKD Kabupaten Bandung</div></td>
+          <td><div class="app">SIMPEG Online</div></td>
+          <td class="c"><span class="chip c-nilai">Penilaian</span></td>
+          <td class="c"><span class="kchip k-none">&#8212; belum</span></td>
+          <td class="c"><span class="act-off">Belum siap</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><div class="inst">Dishub Kota Depok</div></td>
+          <td><div class="app">E-Parkir Depok</div></td>
+          <td class="c"><span class="chip c-proses">Pengisian</span></td>
+          <td class="c"><span class="kchip k-none">&#8212; belum</span></td>
+          <td class="c"><span class="act-off">Belum siap</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><div class="inst">Diskominfo Prov. Banten</div></td>
+          <td><div class="app">Portal Layanan Banten</div></td>
+          <td class="c"><span class="chip c-selesai">Selesai</span></td>
+          <td class="c"><span class="kchip k-bad">Tidak Memadai</span></td>
+          <td class="c"><span class="act">Buka</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pager">
+      <span>Menampilkan 5 dari 23 audit</span>
+      <div class="pg-btns">
+        <span class="pg">&#8249;</span>
+        <span class="pg on">1</span>
+        <span class="pg">2</span>
+        <span class="pg">3</span>
+        <span class="pg">&#8250;</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="arrow-down">&#8595;</div>
+<p class="flow-note" style="margin-bottom:18px;">Setelah klik "Buka" pada Diskominfo Kota Bogor &#8594; masuk halaman detail (rekap konklusi 3 bagian + tombol Generate LHAK)</p>
+
+<div class="annotation">
+<strong>Penjelasan untuk Anda (Samuel):</strong>
+<ul>
+  <li><strong>Level 1 = daftar instansi.</strong> Saat menu "Konklusi &amp; LHAK" dibuka, yang muncul pertama adalah tabel berisi semua instansi yang diaudit — bukan langsung satu audit.</li>
+  <li><strong>Kolom Status</strong> menunjukkan tahap audit tiap instansi: Pengisian (auditee mengisi), Penilaian (auditor menilai), Siap LHAK (sudah dinilai lengkap), Selesai.</li>
+  <li><strong>Kolom Konklusi</strong> menampilkan ringkasan hasil (Memadai/Perlu Peningkatan/Tidak Memadai) jika sudah dihitung, atau "belum" jika penilaian belum selesai.</li>
+  <li><strong>Tombol "Buka"</strong> hanya aktif untuk audit yang sudah siap (sudah dinilai). Yang masih Pengisian/Penilaian tampil "Belum siap".</li>
+  <li><strong>Search &amp; filter</strong> untuk mencari instansi tertentu, filter status, dan filter tahun — penting karena nanti bisa ada puluhan audit.</li>
+  <li><strong>Pola yang sama</strong> berlaku untuk menu lain (Penilaian, Pemindaian, Tindak Lanjut): daftar dulu, baru detail. Untuk auditee, daftarnya hanya audit instansinya sendiri.</li>
+</ul>
+</div>
+
+</body>
+</html>
