@@ -16,18 +16,27 @@ class KuesionerController extends Controller
 {
     public function index()
     {
-        $plan = AuditPlan::whereHas('auditRequest', fn ($q) => $q->where('auditee_id', auth()->id()))
+        $auditeeId = auth()->id();
+
+        $plans = AuditPlan::with('auditRequest')
+            ->whereHas('auditRequest', fn ($q) => $q->where('auditee_id', $auditeeId))
             ->latest()
-            ->first();
-
-        if (! $plan) {
-            return Inertia::render('Auditee/Kuesioner', [
-                'plan'          => null,
-                'butirByBagian' => (object) [],
+            ->get()
+            ->map(fn ($p) => [
+                'id'               => $p->id,
+                'instansi'         => $p->auditRequest->nama_instansi ?? '-',
+                'aplikasi'         => $p->auditRequest->url_target ?? '-',
+                'status_pengisian' => $p->status_pengisian ?? 'pengisian',
+                'butir_terisi'     => PenilaianButir::where('audit_plan_id', $p->id)
+                    ->whereNotNull('jawaban_auditee')
+                    ->where('jawaban_auditee', '<>', '')
+                    ->distinct()
+                    ->count('butir_id'),
             ]);
-        }
 
-        return redirect()->route('auditee.kuesioner.show', $plan->id);
+        return Inertia::render('Auditee/KuesionerIndex', [
+            'plans' => $plans,
+        ]);
     }
 
     public function show(int $planId)
