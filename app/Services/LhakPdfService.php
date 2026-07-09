@@ -21,7 +21,7 @@ class LhakPdfService
         $penilaianMk = $this->getPenilaianBagian($planId, 'mk');
         $penilaianFk = $this->getPenilaianBagian($planId, 'fk');
 
-        $temuan = TemuanAudit::with(['butir', 'auditor'])
+        $temuan = TemuanAudit::with(['butir', 'auditor', 'pesanTindakLanjut.user'])
             ->where('audit_plan_id', $planId)
             ->orderBy('risiko')
             ->get();

@@ -297,6 +297,23 @@
     <div style="font-size:8pt; color:#888; margin-bottom:4px;">Butir: {{ $t->butir?->kode ?? '-' }} · Auditor: {{ $t->auditor?->name ?? '-' }}</div>
     <div style="font-size:9pt; margin-bottom:4px;">{{ $t->deskripsi }}</div>
     <div style="font-size:9pt;"><strong>Rekomendasi:</strong> {{ $t->rekomendasi }}</div>
+
+    @if($t->pesanTindakLanjut && $t->pesanTindakLanjut->count())
+    <div style="margin-top:8px;">
+      <div style="font-size:9pt; font-weight:bold; color:#1F4E79; margin-bottom:2px;">Tindak Lanjut:</div>
+      <ul style="margin-left:12px; font-size:8.5pt; color:#222;">
+        @foreach($t->pesanTindakLanjut as $p)
+          <li style="margin-bottom:2px;">
+            <span style="color:#1F4E79; font-weight:bold;">{{ $p->user->name ?? 'User' }}</span>:
+            {{ $p->pesan }}
+            @if($p->created_at)
+              <span style="color:#888; font-size:7.5pt;">({{ $p->created_at->format('d M Y H:i') }})</span>
+            @endif
+          </li>
+        @endforeach
+      </ul>
+    </div>
+    @endif
   </div>
   @endforeach
   @endif
