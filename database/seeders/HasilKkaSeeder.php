@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\AuditPlan;
+use App\Models\BuktiButir;
 use App\Models\ButirPenilaian;
 use App\Models\PenilaianButir;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class HasilKkaSeeder extends Seeder
 {
@@ -208,6 +210,29 @@ class HasilKkaSeeder extends Seeder
 
         PenilaianButir::insert($rows);
 
-        $this->command->info("Selesai: " . count($rows) . " butir dimasukkan untuk audit_plan_id={$this->planId}.");
+        // Bukti dummy PDF
+        $auditeeId = $plan->auditRequest->auditee_id;
+        $dummyPdf  = "%PDF-1.4\n1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj\n3 0 obj<</Type/Page/MediaBox[0 0 612 792]/Parent 2 0 R>>endobj\nxref\n0 4\n0000000000 65535 f \n0000000009 00000 n \n0000000058 00000 n \n0000000115 00000 n \ntrailer<</Size 4/Root 1 0 R>>\nstartxref\n190\n%%EOF";
+
+        $insertedPenilaian = PenilaianButir::where('audit_plan_id', $this->planId)->get();
+        $buktiRows = [];
+
+        foreach ($insertedPenilaian as $pb) {
+            $path = "bukti/{$this->planId}/{$pb->butir_id}/bukti_dummy.pdf";
+            Storage::disk('public')->put($path, $dummyPdf);
+            $buktiRows[] = [
+                'penilaian_id' => $pb->id,
+                'jenis_acuan'  => 'edk',
+                'auditee_id'   => $auditeeId,
+                'path_file'    => $path,
+                'nama_file'    => 'bukti_dummy.pdf',
+                'created_at'   => $now,
+                'updated_at'   => $now,
+            ];
+        }
+
+        BuktiButir::insert($buktiRows);
+
+        $this->command->info("Selesai: " . count($rows) . " butir dan " . count($buktiRows) . " bukti dummy dimasukkan untuk audit_plan_id={$this->planId}.");
     }
 }
