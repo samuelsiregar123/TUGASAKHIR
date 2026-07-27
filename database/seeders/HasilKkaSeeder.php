@@ -171,13 +171,32 @@ class HasilKkaSeeder extends Seeder
     {
         $plan = AuditPlan::findOrFail($this->planId);
 
-        $auditorId = $plan->auditors()
-            ->where('peran', 'anggota')
-            ->value('user_id');
+        // Bangun mapping bagian → auditor_id berdasarkan penugasan di plan
+        $auditors = $plan->auditors()->where('peran', 'anggota')->get();
 
-        if (!$auditorId) {
+        if ($auditors->isEmpty()) {
             $this->command->error("Tidak ada auditor anggota di audit_plan_id={$this->planId}.");
             return;
+        }
+
+        $bagianMap = ['tk' => [], 'mk' => [], 'fk' => []];
+        foreach ($auditors as $a) {
+            $covered = match ($a->bagian) {
+                'tk_mk' => ['tk', 'mk'],
+                'fk'    => ['fk'],
+                default => ['tk', 'mk', 'fk'],
+            };
+            foreach ($covered as $b) {
+                $bagianMap[$b][] = $a->user_id;
+            }
+        }
+
+        // Fallback: bagian yang tidak ada auditornya pakai auditor pertama
+        $fallback = $auditors->first()->user_id;
+        foreach ($bagianMap as $b => $ids) {
+            if (empty($ids)) {
+                $bagianMap[$b] = [$fallback];
+            }
         }
 
         $butirMap = ButirPenilaian::pluck('id', 'kode');
@@ -193,19 +212,26 @@ class HasilKkaSeeder extends Seeder
 
         PenilaianButir::where('audit_plan_id', $this->planId)->delete();
 
+        // Ambil bagian per butir_id
+        $butirBagian = ButirPenilaian::pluck('bagian', 'id');
+
         $now = now();
         $rows = [];
         foreach ($this->data as $row) {
+            $butirId  = $butirMap[$row['kode']];
+            $bagian   = $butirBagian[$butirId] ?? 'tk';
+            $auditorId = $bagianMap[$bagian][0] ?? $fallback;
+
             $rows[] = [
-                'audit_plan_id'  => $this->planId,
-                'auditor_id'     => $auditorId,
-                'butir_id'       => $butirMap[$row['kode']],
+                'audit_plan_id'   => $this->planId,
+                'auditor_id'      => $auditorId,
+                'butir_id'        => $butirId,
                 'jawaban_auditee' => 'Tanggapan dummy untuk keperluan pengujian.',
-                'edk'            => $row['edk'],
-                'eik'            => $row['eik'],
-                'efk'            => $row['efk'],
-                'created_at'     => $now,
-                'updated_at'     => $now,
+                'edk'             => $row['edk'],
+                'eik'             => $row['eik'],
+                'efk'             => $row['efk'],
+                'created_at'      => $now,
+                'updated_at'      => $now,
             ];
         }
 

@@ -19,8 +19,8 @@ const statusBadge = {
     <p class="page-sub">Instansi: <b>{{ namaInstansi || '(belum diatur)' }}</b></p>
 
     <!-- Audit aktif -->
-    <div v-if="pengajuan.length">
-      <div v-for="p in pengajuan" :key="p.id" class="spbe-card" style="margin-bottom:12px">
+    <div v-if="pengajuan.length" class="spbe-card" style="padding:0">
+      <div v-for="(p, i) in pengajuan" :key="p.id" :style="i < pengajuan.length - 1 ? 'border-bottom:1px solid #e5e7eb' : ''" style="padding:14px 16px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
           <p style="font-size:12px;font-weight:600">{{ p.nama_instansi }} — {{ p.url_target }}</p>
           <span class="badge" :class="statusBadge[p.status]?.cls">
