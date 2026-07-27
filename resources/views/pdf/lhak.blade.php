@@ -114,7 +114,7 @@
     $konklusiLabel = fn($k) => match($k) {
       'memadai' => 'Memadai', 'perlu_peningkatan' => 'Perlu Peningkatan', 'tidak_memadai' => 'Tidak Memadai', default => '-'
     };
-    $fmt = fn($v) => $v !== null ? number_format($v * 100, 1).'%' : '—';
+    $fmt = fn($v) => $v !== null ? number_format($v * 100, 2).'%' : '—';
   @endphp
 
   <div style="display:table; width:100%; border-collapse:separate; border-spacing:8px; margin-bottom:12px;">
@@ -342,9 +342,9 @@
       ] as [$label, $edk, $eik, $efk, $konklusi])
       <tr style="border-bottom:1px solid #eee;">
         <td style="padding:6px 8px; font-weight:bold;">{{ $label }}</td>
-        <td style="padding:6px 8px; text-align:center;">{{ $edk !== null ? number_format($edk*100,1).'%' : '—' }}</td>
-        <td style="padding:6px 8px; text-align:center;">{{ $eik !== null ? number_format($eik*100,1).'%' : '—' }}</td>
-        <td style="padding:6px 8px; text-align:center;">{{ $efk !== null ? number_format($efk*100,1).'%' : '—' }}</td>
+        <td style="padding:6px 8px; text-align:center;">{{ $edk !== null ? number_format($edk*100,2).'%' : '—' }}</td>
+        <td style="padding:6px 8px; text-align:center;">{{ $eik !== null ? number_format($eik*100,2).'%' : '—' }}</td>
+        <td style="padding:6px 8px; text-align:center;">{{ $efk !== null ? number_format($efk*100,2).'%' : '—' }}</td>
         <td style="padding:6px 8px; text-align:center;">
           @if($konklusi === 'memadai') <span class="badge-memadai">Memadai</span>
           @elseif($konklusi === 'perlu_peningkatan') <span class="badge-perlu">Perlu Peningkatan</span>

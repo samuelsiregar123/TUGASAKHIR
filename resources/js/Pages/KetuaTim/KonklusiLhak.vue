@@ -28,7 +28,7 @@ const KONKLUSI_LABEL = {
 }
 function fmt(v) {
     if (v === null || v === undefined) return '—'
-    return (v * 100).toFixed(1) + '%'
+    return (v * 100).toFixed(2) + '%'
 }
 
 async function hitungUlang() {
