@@ -197,14 +197,15 @@ class HasilKkaSeeder extends Seeder
         $rows = [];
         foreach ($this->data as $row) {
             $rows[] = [
-                'audit_plan_id' => $this->planId,
-                'auditor_id'    => $auditorId,
-                'butir_id'      => $butirMap[$row['kode']],
-                'edk'           => $row['edk'],
-                'eik'           => $row['eik'],
-                'efk'           => $row['efk'],
-                'created_at'    => $now,
-                'updated_at'    => $now,
+                'audit_plan_id'  => $this->planId,
+                'auditor_id'     => $auditorId,
+                'butir_id'       => $butirMap[$row['kode']],
+                'jawaban_auditee' => 'Tanggapan dummy untuk keperluan pengujian.',
+                'edk'            => $row['edk'],
+                'eik'            => $row['eik'],
+                'efk'            => $row['efk'],
+                'created_at'     => $now,
+                'updated_at'     => $now,
             ];
         }
 
